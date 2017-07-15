@@ -55,8 +55,8 @@
 
 	</head>
 	<body ng-controller="navController" style="background: white;">
-		<nav class="navbar navbar-default">
-	        <div ng-cloak class="container-fluid">
+		<nav ng-cloak class="navbar navbar-default">
+	        <div ng-if="!maintenance" ng-cloak class="container-fluid">
 	            <!-- Brand and toggle get grouped for better mobile display -->
 	            <div class="navbar-header custom-navbar">
 	                <a class="navbar-brand navBarIcon" ng-click="ProfileButtonClick()">
@@ -99,8 +99,19 @@
 	        </div>
 	    </nav>
 
-		<div id="main" style="min-height: calc(100% - 162px);" ng-style="isPublicProfile() ? {'background': '#f5f8fa'} : {'background': 'white'}">
+		<div ng-cloak ng-if="!maintenance" id="main" style="min-height: calc(100% - 162px);" ng-style="isPublicProfile() ? {'background': '#f5f8fa'} : {'background': 'white'}">
 			<div ng-view="" autoscroll="true">
+			</div>
+		</div>
+
+		<div ng-cloak ng-if="maintenance" id="main" style="min-height: calc(100% - 162px);" ng-style="isPublicProfile() ? {'background': '#f5f8fa'} : {'background': 'white'}">
+			<div class="header">
+				<div class="row">
+					<div style="text-align:center" class="header-content">
+						<img style="margin-right: 0px;" id="headerIcon" src="image/serify_icon.png" alt="Serify icon">
+						<p style="text-align:center" id="headerDescription">Serify is currently down for maintenance.</p>
+					</div>
+				</div>
 			</div>
 		</div>
 

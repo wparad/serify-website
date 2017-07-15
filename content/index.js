@@ -113,10 +113,12 @@ function($scope, $rootScope, $routeParams, $location, $uibModal, loginStatusProv
  	};
 
 	/******** SignInButton Block ********/
+	$rootScope.maintenance = true;
 	$rootScope.authentication.IsAdmin = false;
 	$rootScope.authentication.UserAuthenticated = false;
 	$scope.links = [];
 	function SetupUser() {
+		if ($rootScope.maintenance) { return Promise.resolve(); }
 		return loginStatusProvider.validateAuthenticationPromise()
 		.then(function(authData) {
 			try {
